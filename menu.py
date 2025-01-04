@@ -8,9 +8,6 @@ from requests.exceptions import HTTPError
 from bs4 import BeautifulSoup
 from scraper import scrape_symbols
 
-
-
-
 def create_portfolio_with_stocks(cursor):
     name = input("Enter portfolio name: ")
     creation_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -142,7 +139,6 @@ def display_portfolios(cursor):
 
 def main_menu(cursor):
     print("\nPortfolio Management System")
-    # print("1. View watchlists")
     print("1. Create a new portfolio with stocks")
     if at_least_one_portfolio_exists(cursor):
         print("2. Add stocks to an existing portfolio")
@@ -169,10 +165,6 @@ if __name__ == "__main__":
     cursor = db_connection.cursor()
     while True:
         choice = main_menu(cursor)
-
-        # if choice == '1':
-        #     sym = display_watchlist()
-        #     print('Symbols: ',sym )
 
         if choice == '1':
             create_portfolio_with_stocks(cursor)

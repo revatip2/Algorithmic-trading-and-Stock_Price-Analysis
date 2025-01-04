@@ -230,8 +230,8 @@ def calculate_rsi(data, column='Close', window=14):
 
 db_connection = mysql.connector.connect(
     host="localhost",
-    user="sam",
-    password="pass246",
+    user="username",
+    password="password",
     database="stocks_portfolio"
 )
 
@@ -279,8 +279,4 @@ for symbol in stocks:
     all_data.append(stock_data)
 
 final_dataset = pd.concat(all_data, ignore_index=True)
-# a = final_dataset.to_csv('a.csv')
-# print(final_dataset.isnull().sum())
-# print("Columns with null values:")
-# print(null_columns)
 print(final_dataset)
