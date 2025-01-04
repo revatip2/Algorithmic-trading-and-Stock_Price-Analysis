@@ -8,6 +8,39 @@ from requests.exceptions import HTTPError
 from bs4 import BeautifulSoup
 from scraper import scrape_symbols
 
+
+
+
+# def create_portfolio_with_stocks(cursor):
+#     name = input("Enter portfolio name: ")
+#     creation_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+#     cursor.execute("INSERT INTO portfolio (name, creation_date) VALUES (%s, %s)", (name, creation_date))
+#     portfolio_id = cursor.lastrowid
+
+#     stocks = input("Enter a list of stocks separated by commas (e.g., AAPL,GOOGL,MSFT): ").split(',')
+
+#     start_date = input("Enter start date for historical data (YYYY-MM-DD): ")
+#     end_date = input("Enter end date for historical data (YYYY-MM-DD): ")
+
+#     for symbol in stocks:
+#         try:
+#             stock_info = yf.Ticker(symbol)
+#             # info = stock_info.info
+#             historical_data = stock_info.history(start=start_date, end=end_date)
+            
+#             if not historical_data.empty:
+#                 print(f"\nHistorical data for {symbol} between {start_date} and {end_date}:\n")
+#                 table = pd.DataFrame({
+#                     'Close Price': historical_data['Close']
+#                 })
+#                 print(table)
+#                 cursor.execute("INSERT INTO stocks (portfolio_id, symbol) VALUES (%s, %s)", (portfolio_id, symbol))
+#             else:
+#                 print(f"\nStock {symbol} does not exist.")
+#         except Exception as e:
+#             print(f"Error processing stock {symbol}: {e}")
+
+#     return portfolio_id
 def create_portfolio_with_stocks(cursor):
     name = input("Enter portfolio name: ")
     creation_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -139,6 +172,7 @@ def display_portfolios(cursor):
 
 def main_menu(cursor):
     print("\nPortfolio Management System")
+    # print("1. View watchlists")
     print("1. Create a new portfolio with stocks")
     if at_least_one_portfolio_exists(cursor):
         print("2. Add stocks to an existing portfolio")
@@ -165,6 +199,10 @@ if __name__ == "__main__":
     cursor = db_connection.cursor()
     while True:
         choice = main_menu(cursor)
+
+        # if choice == '1':
+        #     sym = display_watchlist()
+        #     print('Symbols: ',sym )
 
         if choice == '1':
             create_portfolio_with_stocks(cursor)

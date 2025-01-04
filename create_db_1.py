@@ -2,8 +2,8 @@ import mysql.connector
 
 conn = mysql.connector.connect(
     host='localhost',
-    user='username',
-    password='password'
+    user='sam',
+    password='pass246'
 )
 cursor = conn.cursor()
 
@@ -13,8 +13,8 @@ cursor.execute('''
                
 conn = mysql.connector.connect(
     host='localhost',
-    user='usernmae',
-    password='password',
+    user='sam',
+    password='pass246',
     database='stocks_portfolio'
 )
 
